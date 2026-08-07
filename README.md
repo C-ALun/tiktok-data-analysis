@@ -75,7 +75,6 @@ tiktok-data-analysis/
 │   └── tiktok_data_analysis.pbix
 │
 ├── README.md
-├── requirements.txt
 └── .gitignore
 ```
 
@@ -88,7 +87,7 @@ The dataset is stored externally because the raw CSV exceeds GitHub's file-size 
 The raw dataset is not included directly in this repository because of GitHub file-size restrictions.
 
 **Dataset download:**
-[Google Drive link — replace this with your actual dataset link]
+[https://drive.google.com/file/d/1swIVDzHIKYNoUaARUVn6yl1gdvhdUXED/view?usp=sharing]
 
 After downloading the dataset, create the following folder structure inside the project:
 
