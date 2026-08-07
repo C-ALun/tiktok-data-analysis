@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-This project analyses a large-scale Douyin/TikTok-style behavioural dataset to understand how users consume video content, how engagement is distributed across creators and videos, and how publishing activity changes over time.
+This project analyses a large-scale Douyin/TikTok-style behavioural dataset to understand how users consume video content, how reach and engagement are distributed across creators and videos, and how publishing activity changes over time.
 
-The project uses **Python and Pandas for data preparation and feature engineering**, followed by **Power BI for interactive dashboard development and visual analysis**.
+The project uses **Python and Pandas for data preparation**, followed by **Power BI for interactive dashboard development and visual analysis**.
 
 The analysis is structured around three perspectives:
 
@@ -20,11 +20,11 @@ This project aims to answer the following questions:
 
 1. How actively do users consume video content?
 2. How common are likes and completed views among users?
-3. What type of video content dominates user consumption?
-4. How evenly are views distributed across creators?
+3. What type of video content dominates the observed viewing mix?
+4. How unevenly are views distributed across creators?
 5. How common is engagement across creators and videos?
 6. How does video publishing activity change over time?
-7. Are views and likes concentrated among a relatively small share of content?
+7. How unevenly are views and likes distributed across authors and videos?
 
 ---
 
@@ -74,20 +74,21 @@ tiktok-data-analysis/
 ├── powerbi/
 │   └── tiktok_data_analysis.pbix
 │
+├── images/
+│   ├── user_dashboard.png
+│   ├── author_dashboard.png
+│   └── video_dashboard.png
+│
 ├── README.md
 └── .gitignore
 ```
-
-The dataset is stored externally because the raw CSV exceeds GitHub's file-size limit.
-
 ---
 
 # Dataset
 
 The raw dataset is not included directly in this repository because of GitHub file-size restrictions.
 
-**Dataset download:**
-[https://drive.google.com/file/d/1swIVDzHIKYNoUaARUVn6yl1gdvhdUXED/view?usp=sharing]
+**Dataset:** [Download from Google Drive](https://drive.google.com/file/d/1swIVDzHIKYNoUaARUVn6yl1gdvhdUXED/view?usp=sharing)
 
 After downloading the dataset, create the following folder structure inside the project:
 
@@ -104,8 +105,6 @@ data/raw/douyin_dataset.csv
 ```
 
 The notebooks generate the processed User, Author, and Video feature tables from this raw dataset.
-
-> Make sure the Google Drive sharing permission is set to **Anyone with the link can view/download**.
 
 ---
 
@@ -135,11 +134,11 @@ The first notebook performs the core data preparation process, including:
 
 ---
 
-## Analytical Data Grains
+# Analytical Data Grains
 
 The project deliberately creates three separate analytical tables.
 
-### User Level
+## User Level
 
 Each row represents one user.
 
@@ -154,12 +153,12 @@ Key features include:
 * Completed-view count
 * Completion rate
 * Like rate
-* Average characteristics of viewed content
+* Average duration of videos viewed by each user
 * Behavioural distribution groups
 
 ---
 
-### Author Level
+## Author Level
 
 Each row represents one content creator.
 
@@ -181,7 +180,7 @@ Key features include:
 
 ---
 
-### Video Level
+## Video Level
 
 Each row represents one unique video.
 
@@ -222,11 +221,13 @@ Key metrics and visuals include:
 * Like activity
 * Viewing-frequency distribution
 * Completed-view distribution
-* Distribution of users by characteristics of viewed content
+* User distribution by average duration of viewed videos
 
 ### Main Question
 
 > How do users consume and engage with content?
+
+![User Behaviour Dashboard](images/user_dashboard.png)
 
 ---
 
@@ -245,7 +246,9 @@ Key metrics and visuals include:
 
 ### Main Question
 
-> How evenly are traffic and engagement distributed across creators?
+> How unevenly are traffic and engagement distributed across creators?
+
+![Author Performance Dashboard](images/author_dashboard.png)
 
 ---
 
@@ -253,7 +256,7 @@ Key metrics and visuals include:
 
 The Video dashboard focuses on content performance and publishing behaviour.
 
-Key metrics include:
+Key metrics and visuals include:
 
 * Total videos
 * Average videos published per active day
@@ -267,42 +270,44 @@ Key metrics include:
 
 > How is content performance distributed across videos, and how does publishing activity change over time?
 
+![Video Performance Dashboard](images/video_dashboard.png)
+
 ---
 
 # Key Findings
 
-## 1. Short-form content dominated observed consumption
+## 1. Short-duration videos dominated the observed viewing mix
 
-A large proportion of users were associated with relatively short video durations.
+Around **74% of users had an average viewed-video duration of approximately 12 seconds or less**.
 
-Around **74% of users were concentrated in the lower video-duration groups**, indicating that short-form content dominated the observed content mix.
+This indicates that relatively short videos represented a large share of the content observed in user viewing behaviour.
 
 However, video duration should not be interpreted as actual watch time.
 
 A user may watch only part of a longer video before moving to the next video.
 
-Therefore, this finding describes the characteristics of content users were exposed to rather than exact user watch-time behaviour.
+Therefore, this finding describes the characteristics of the videos users were exposed to rather than the exact amount of time users spent watching them.
 
 ---
 
 ## 2. Completed viewing activity was limited for many users
 
-More than half of users recorded only a small number of completed video views.
+More than half of users recorded **five or fewer completed views**.
 
 This suggests that while viewing activity was common, repeated full-video completion was less common across the broader user population.
 
 ---
 
-## 3. Explicit engagement through likes was limited
+## 3. Explicit engagement through likes was uncommon
 
 More than **90% of users recorded no like activity**.
 
-This indicates that viewing behaviour was much more common than explicit interaction through likes.
+This indicates that viewing behaviour was substantially more common than explicit interaction through likes.
 
-The dataset therefore shows a clear distinction between:
+The dataset therefore shows a distinction between:
 
-* Passive content consumption
-* Active engagement
+* Content consumption
+* Explicit engagement
 
 ---
 
@@ -316,11 +321,11 @@ Approximately:
 * **79.84% received five views or fewer**
 * Only **2.97% received more than 50 views**
 
-This suggests that content exposure was concentrated among a relatively small group of creators.
+This indicates that creator exposure was distributed very unevenly across the dataset.
 
 ---
 
-## 5. Video engagement was extremely sparse
+## 5. Video-level engagement was extremely sparse
 
 The video-level dataset contains approximately **449,000 videos**.
 
@@ -330,30 +335,26 @@ Like distribution was highly uneven:
 * **2.55% received exactly one like**
 * Only **0.38% received two or more likes**
 
-The dataset recorded **16,773 total likes**, but these likes were generated by only a small minority of videos.
+The dataset recorded **16,773 total likes**, but those likes were generated by only a small minority of videos.
 
-This indicates that explicit engagement was highly concentrated.
+This indicates that explicit video engagement was highly uneven across the content observed in the dataset.
 
 ---
 
 # Overall Interpretation
 
-The analysis suggests a content platform characterised by:
+The analysis suggests that viewing activity was substantially more common than explicit engagement through likes.
 
-* High volumes of passive content consumption
-* Strong presence of short-form content
-* Low explicit engagement across most users
-* Highly uneven creator exposure
-* Highly concentrated video engagement
+Short-duration videos represented a large share of the observed viewing mix, while creator reach and video-level engagement were distributed very unevenly.
 
-Although substantial viewing activity was recorded, most creators and videos received limited reach or interaction.
+Most creators received only a small number of recorded views, and the large majority of videos received no likes.
 
-From a product perspective, this could motivate further investigation into:
+From a product perspective, these patterns could motivate further investigation into:
 
 * Recommendation-system performance
 * Creator discovery
 * Content characteristics associated with higher engagement
-* Converting passive viewers into active users
+* Converting passive viewing into explicit engagement
 * Early-stage exposure for newly published videos
 
 These findings should not be interpreted as evidence that low-view or low-like content is necessarily low quality.
@@ -364,7 +365,7 @@ Low engagement may also reflect limited exposure, recommendation behaviour, samp
 
 # Data Validation
 
-Consistency checks were performed during feature engineering to make sure aggregation did not change the underlying interaction totals.
+Consistency checks were performed during feature engineering to ensure that aggregation did not change the underlying interaction totals.
 
 For example:
 
@@ -390,7 +391,7 @@ Similar checks were performed for views and table grain.
 
 ## 1. Clone or Download the Repository
 
-Download the repository to your local machine.
+Download or clone the repository to your local machine.
 
 ---
 
@@ -398,15 +399,15 @@ Download the repository to your local machine.
 
 Download the raw CSV from:
 
-[Google Drive link — replace this with your actual dataset link]
+**[Google Drive Dataset](https://drive.google.com/file/d/1swIVDzHIKYNoUaARUVn6yl1gdvhdUXED/view?usp=sharing)**
 
-Create:
+Create the following directory:
 
 ```text
 data/raw/
 ```
 
-and place the file there as:
+and place the downloaded file there as:
 
 ```text
 data/raw/douyin_dataset.csv
@@ -414,15 +415,7 @@ data/raw/douyin_dataset.csv
 
 ---
 
-## 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## 4. Run the Notebooks
+## 3. Run the Notebooks
 
 Run the notebooks in the following order:
 
@@ -433,13 +426,13 @@ Run the notebooks in the following order:
 4. 03_video_features.ipynb
 ```
 
-`00_data_preparation.ipynb` creates the base User, Author, and Video feature tables.
+`00_data_preparation.ipynb` performs data validation and creates the base User, Author, and Video feature tables.
 
-The remaining notebooks perform additional feature engineering and prepare the final datasets used by Power BI.
+The remaining notebooks perform additional feature engineering and prepare the final datasets used in Power BI.
 
 ---
 
-## 5. Open the Power BI Report
+## 4. Open the Power BI Report
 
 Open:
 
@@ -449,7 +442,7 @@ powerbi/tiktok_data_analysis.pbix
 
 to explore the interactive dashboards.
 
-If Power BI cannot locate the generated CSV files because the project has been moved to another computer, update the data-source paths through Power Query before refreshing the report.
+If Power BI cannot locate the generated CSV files after the project is moved to another computer, update the data-source paths through Power Query before refreshing the report.
 
 ---
 
@@ -480,7 +473,7 @@ This analysis is based on the available behavioural dataset and should not be in
 Important limitations include:
 
 * Recorded views represent observations within the dataset
-* Video duration does not represent actual user watch time
+* Video duration represents the video's total length, not actual user watch time
 * Low like counts may be influenced by limited exposure
 * Users, authors, and videos are subject to the original sampling methodology
 * The analysis is descriptive rather than causal
